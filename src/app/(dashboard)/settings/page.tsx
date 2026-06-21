@@ -89,6 +89,8 @@ async function handleUpdateSettings(formData: FormData) {
     data.lockoutDurationMinutes = lockoutDurationMinutes;
   }
 
+  let updateError: string | null = null;
+
   try {
     const settingsRepo = new SettingsRepository();
     await settingsRepo.updateSettings(data);
@@ -102,19 +104,21 @@ async function handleUpdateSettings(formData: FormData) {
       newData: { section: tab },
       ipAddress: ip,
     });
-
-    redirect(
-      `/settings?tab=${tab}&success=${encodeURIComponent(
-        "Settings updated successfully."
-      )}`
-    );
   } catch (error: any) {
+    updateError = error.message || "Failed to update settings.";
+  }
+
+  if (updateError) {
     redirect(
-      `/settings?tab=${tab}&error=${encodeURIComponent(
-        error.message || "Failed to update settings."
-      )}`
+      `/settings?tab=${tab}&error=${encodeURIComponent(updateError)}`
     );
   }
+
+  redirect(
+    `/settings?tab=${tab}&success=${encodeURIComponent(
+      "Settings updated successfully."
+    )}`
+  );
 }
 
 export default async function SettingsPage(props: {
@@ -174,22 +178,20 @@ export default async function SettingsPage(props: {
         <div className="bg-white border border-slate-200 rounded-2xl p-2 flex flex-row md:flex-col gap-1 overflow-x-auto">
           <Link
             href="/settings?tab=general"
-            className={`flex items-center gap-2.5 px-4 py-3 rounded-xl text-sm font-semibold transition whitespace-nowrap ${
-              activeTab === "general"
+            className={`flex items-center gap-2.5 px-4 py-3 rounded-xl text-sm font-semibold transition whitespace-nowrap ${activeTab === "general"
                 ? "bg-blue-600 text-white shadow-md shadow-blue-500/20"
                 : "text-slate-500 hover:text-slate-800 hover:bg-slate-100"
-            }`}
+              }`}
           >
             <Building2 className="w-4 h-4" />
             Company Details
           </Link>
           <Link
             href="/settings?tab=security"
-            className={`flex items-center gap-2.5 px-4 py-3 rounded-xl text-sm font-semibold transition whitespace-nowrap ${
-              activeTab === "security"
+            className={`flex items-center gap-2.5 px-4 py-3 rounded-xl text-sm font-semibold transition whitespace-nowrap ${activeTab === "security"
                 ? "bg-blue-600 text-white shadow-md shadow-blue-500/20"
                 : "text-slate-500 hover:text-slate-800 hover:bg-slate-100"
-            }`}
+              }`}
           >
             <ShieldCheck className="w-4 h-4" />
             Security Policies
