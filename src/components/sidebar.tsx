@@ -6,7 +6,6 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { logoutUser } from "@/actions/authActions";
 import { 
-  LayoutDashboard, 
   Home,
   Package, 
   Tags, 

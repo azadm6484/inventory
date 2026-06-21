@@ -3,7 +3,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import { Search, Filter } from "lucide-react";
-import Link from "next/link";
 
 interface CategoryOption {
   _id: any;
@@ -31,7 +30,7 @@ export function ProductFilters({
   const isFirstRender = useRef(true);
 
   // Helper to construct URL with updated query parameters
-  const updateParams = (updates: Record<string, string>) => {
+  const updateParams = React.useCallback((updates: Record<string, string>) => {
     const params = new URLSearchParams(searchParams.toString());
     
     // Always reset page to 1 when filters change
@@ -46,7 +45,7 @@ export function ProductFilters({
     });
 
     router.push(`${pathname}?${params.toString()}`);
-  };
+  }, [searchParams, pathname, router]);
 
   // Debounce search query input
   useEffect(() => {
@@ -60,7 +59,7 @@ export function ProductFilters({
     }, 400); // 400ms debounce
 
     return () => clearTimeout(delayDebounce);
-  }, [query]);
+  }, [query, updateParams]);
 
   const handleCategoryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     updateParams({ categoryId: e.target.value });

@@ -6,7 +6,6 @@ import { AuditService } from "@/services/AuditService";
 import { NotificationService } from "@/services/NotificationService";
 import { EmailService } from "@/services/EmailService";
 import { productSchema } from "@/validations/product";
-import { Product } from "@/models/Product";
 import { dbConnect } from "@/lib/db/mongodb";
 import { revalidatePath } from "next/cache";
 

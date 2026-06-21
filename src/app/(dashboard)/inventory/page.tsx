@@ -3,7 +3,7 @@ import { InventoryRepository } from "@/repositories/InventoryRepository";
 import { ProductRepository } from "@/repositories/ProductRepository";
 import { stockIn, stockOut, adjustStock } from "@/actions/inventoryActions";
 import {
-  ArrowDownCircle, ArrowUpCircle, AlertCircle, SlidersHorizontal, Search,
+  ArrowDownCircle, ArrowUpCircle, AlertCircle, SlidersHorizontal,
   Package, Filter, TrendingDown, TrendingUp,
 } from "lucide-react";
 import Link from "next/link";

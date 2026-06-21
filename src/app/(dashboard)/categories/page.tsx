@@ -1,9 +1,7 @@
 import React from "react";
 import { CategoryRepository } from "@/repositories/CategoryRepository";
-import { createCategory, updateCategory, deleteCategory } from "@/actions/categoryActions";
-import { Plus, Edit2, Trash2, Search, Tag, Eye } from "lucide-react";
+import { Plus, Edit2, Trash2, Search, Tag } from "lucide-react";
 import Link from "next/link";
-import { redirect } from "next/navigation";
 import { auth } from "@/lib/auth/auth";
 import { SubmitButton } from "@/components/SubmitButton";
 

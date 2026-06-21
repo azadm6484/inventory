@@ -3,9 +3,8 @@ import { ProductRepository } from "@/repositories/ProductRepository";
 import { InventoryRepository } from "@/repositories/InventoryRepository";
 import { CategoryRepository } from "@/repositories/CategoryRepository";
 import { SupplierRepository } from "@/repositories/SupplierRepository";
-import { UserRepository } from "@/repositories/UserRepository";
 import DashboardCharts from "@/components/dashboard-charts";
-import { Package, Tags, Truck, AlertTriangle, Coins, BarChart3 } from "lucide-react";
+import { Package, Truck, AlertTriangle, Coins } from "lucide-react";
 
 export const revalidate = 0; // Dynamic rendering
 
@@ -14,13 +13,11 @@ export default async function DashboardPage() {
   const inventoryRepo = new InventoryRepository();
   const categoryRepo = new CategoryRepository();
   const supplierRepo = new SupplierRepository();
-  const userRepo = new UserRepository();
 
   const [
     totalProducts,
     totalCategories,
     totalSuppliers,
-    totalUsers,
     valuation,
     lowStockCount,
     outOfStockCount,
@@ -30,7 +27,6 @@ export default async function DashboardPage() {
     productRepo.count({}),
     categoryRepo.count({}),
     supplierRepo.count({}),
-    userRepo.count({}),
     productRepo.getInventoryValuation(),
     productRepo.countLowStock(),
     productRepo.countOutOfStock(),

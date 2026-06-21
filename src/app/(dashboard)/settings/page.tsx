@@ -7,7 +7,6 @@ import {
   AlertCircle,
   Lock,
   Clock,
-  Hash,
   AlertTriangle,
 } from "lucide-react";
 import Link from "next/link";

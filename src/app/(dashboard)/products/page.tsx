@@ -2,13 +2,12 @@ import React from "react";
 import { ProductRepository } from "@/repositories/ProductRepository";
 import { CategoryRepository } from "@/repositories/CategoryRepository";
 import { SupplierRepository } from "@/repositories/SupplierRepository";
-import { createProduct, updateProduct, deleteProduct } from "@/actions/productActions";
 import {
-  Plus, Edit2, Trash2, Search, Package, AlertTriangle,
-  CheckCircle, Archive, Filter,
+  Plus, Edit2, Trash2, Package, AlertTriangle,
+  CheckCircle, Archive,
 } from "lucide-react";
 import Link from "next/link";
-import { redirect } from "next/navigation";
+import Image from "next/image";
 import { ImageUpload } from "@/components/ImageUpload";
 import { ProductFilters } from "@/components/ProductFilters";
 import { auth } from "@/lib/auth/auth";
@@ -209,9 +208,12 @@ export default async function ProductsPage(props: {
                       <td className="px-5 py-3.5">
                         <div className="flex items-center gap-3">
                           {product.image ? (
-                            <img
+                            <Image
                               src={product.image}
                               alt={product.name}
+                              width={36}
+                              height={36}
+                              unoptimized
                               className="w-9 h-9 rounded-lg object-cover border border-slate-200 flex-shrink-0"
                             />
                           ) : (

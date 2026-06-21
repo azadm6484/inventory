@@ -5,19 +5,15 @@ import {
   Edit2, 
   Trash2, 
   Search, 
-  User, 
   Mail, 
   Shield, 
   ShieldAlert, 
   ShieldCheck, 
   Calendar, 
-  UserCheck, 
-  UserX,
   AlertCircle,
   CheckCircle2
 } from "lucide-react";
 import Link from "next/link";
-import { redirect } from "next/navigation";
 import { SubmitButton } from "@/components/SubmitButton";
 
 export const revalidate = 0;
