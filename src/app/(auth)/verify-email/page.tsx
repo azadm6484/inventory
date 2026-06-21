@@ -5,7 +5,7 @@ import { verifyEmailToken } from "@/actions/authActions";
 import { useSearchParams, useRouter } from "next/navigation";
 import Link from "next/link";
 
-export default function VerifyEmailPage() {
+function VerifyEmailContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const token = searchParams.get("token");
@@ -83,5 +83,20 @@ export default function VerifyEmailPage() {
         </div>
       )}
     </div>
+  );
+}
+
+export default function VerifyEmailPage() {
+  return (
+    <React.Suspense fallback={
+      <div className="text-center space-y-4 py-4">
+        <div className="space-y-3">
+          <div className="w-10 h-10 border-2 border-blue-500 border-t-transparent rounded-full animate-spin mx-auto" />
+          <p className="text-slate-300 text-sm">Loading verification screen...</p>
+        </div>
+      </div>
+    }>
+      <VerifyEmailContent />
+    </React.Suspense>
   );
 }

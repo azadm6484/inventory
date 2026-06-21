@@ -60,7 +60,7 @@ export async function sendEmail(options: SendEmailOptions) {
 
     // If mock json transport is active
     if ((transporter as any).options.jsonTransport) {
-      console.log("📨 [MOCK EMAIL SENT]:", JSON.stringify(info.message, null, 2));
+      console.log("📨 [MOCK EMAIL SENT]:", JSON.stringify((info as any).message, null, 2));
     }
 
     // 2. Update status to SENT

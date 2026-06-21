@@ -5,7 +5,7 @@ import { loginUser } from "@/actions/authActions";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 
-export default function LoginPage() {
+function LoginForm() {
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get("callbackUrl") || "/dashboard";
   const errorParam = searchParams.get("error");
@@ -120,5 +120,18 @@ export default function LoginPage() {
         </Link>
       </div>
     </form>
+  );
+}
+
+export default function LoginPage() {
+  return (
+    <React.Suspense fallback={
+      <div className="text-center space-y-4 py-4">
+        <div className="w-10 h-10 border-2 border-blue-500 border-t-transparent rounded-full animate-spin mx-auto" />
+        <p className="text-slate-500 text-sm">Loading login form...</p>
+      </div>
+    }>
+      <LoginForm />
+    </React.Suspense>
   );
 }

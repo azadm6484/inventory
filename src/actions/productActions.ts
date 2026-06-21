@@ -24,7 +24,7 @@ export async function createProduct(prevState: any, formData: FormData) {
   try {
     await dbConnect();
     const sku = await productRepo.generateNextSku();
-    const product = await productRepo.create({ ...validation.data, sku });
+    const product = await productRepo.create({ ...validation.data, sku } as any);
 
     await Promise.all([
       AuditService.log({
@@ -67,7 +67,7 @@ export async function updateProduct(id: string, prevState: any, formData: FormDa
     const oldProduct = await productRepo.findById(id);
     if (!oldProduct) return { error: "Product not found." };
 
-    const updated = await productRepo.update(id, validation.data);
+    const updated = await productRepo.update(id, validation.data as any);
 
     await Promise.all([
       AuditService.log({

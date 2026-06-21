@@ -50,7 +50,7 @@ export async function POST(req: NextRequest) {
     }
 
     const sku = await productRepo.generateNextSku();
-    const product = await productRepo.create({ ...validation.data, sku });
+    const product = await productRepo.create({ ...validation.data, sku } as any);
     return NextResponse.json({ data: product }, { status: 201 });
   } catch (error: any) {
     return NextResponse.json({ error: error.message }, { status: 500 });
